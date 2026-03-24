@@ -25,32 +25,6 @@ body {
   font-family: var(--font-body);
   font-weight: 300;
   overflow-x: hidden;
-  cursor: none;
-}
-
-/* ── CUSTOM CURSOR ── */
-.cursor-dot {
-  width: 8px; height: 8px;
-  background: var(--accent);
-  border-radius: 50%;
-  position: fixed; top: 0; left: 0;
-  pointer-events: none; z-index: 9999;
-  transform: translate(-50%,-50%);
-  transition: transform 0.08s ease, background 0.2s;
-}
-.cursor-ring {
-  width: 36px; height: 36px;
-  border: 1.5px solid rgba(0,245,200,0.4);
-  border-radius: 50%;
-  position: fixed; top: 0; left: 0;
-  pointer-events: none; z-index: 9998;
-  transform: translate(-50%,-50%);
-  transition: transform 0.18s ease, width 0.25s, height 0.25s, border-color 0.25s;
-}
-body:has(a:hover) .cursor-ring,
-body:has(button:hover) .cursor-ring {
-  width: 56px; height: 56px;
-  border-color: var(--accent);
 }
 
 /* ── SCROLL PROGRESS ── */
@@ -278,24 +252,6 @@ nav.scrolled {
 }
 .btn-outline:hover { border-color: var(--white); transform: translateY(-2px); }
 
-.hero-scroll {
-  position: absolute; bottom: 2.5rem; left: 50%;
-  transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-  font-family: var(--font-mono); font-size: 0.7rem;
-  color: var(--muted); letter-spacing: 0.1em;
-  opacity: 0; animation: fade-up 1s 1.2s ease forwards;
-}
-.hero-scroll-line {
-  width: 1px; height: 50px;
-  background: linear-gradient(to bottom, var(--accent), transparent);
-  animation: scroll-line 2s ease-in-out infinite;
-}
-@keyframes scroll-line {
-  0%,100% { opacity: 1; height: 50px; }
-  50% { opacity: 0.3; height: 30px; }
-}
-
 /* Skill pills in hero */
 .hero-skills {
   display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2.5rem;
@@ -393,7 +349,6 @@ section { position: relative; z-index: 2; }
 .skills-grid {
   display: flex; flex-direction: column; gap: 1.4rem;
 }
-.skill-item {}
 .skill-meta {
   display: flex; justify-content: space-between; margin-bottom: 0.5rem;
 }
