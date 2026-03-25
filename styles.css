@@ -11,8 +11,8 @@
   --muted: #6b6b8a;
   --border: rgba(255,255,255,0.07);
   --card-bg: rgba(255,255,255,0.03);
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+  --font-display:'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
   --font-mono: 'Syne Mono', monospace;
   --nav-h: 72px;
 }
