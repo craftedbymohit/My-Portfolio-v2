@@ -948,7 +948,7 @@ section {
 }
 
 .project-tech span {
-  font-family: var(--font-mono);
+  font-family: "Datatype", monospace;
   font-size: 0.68rem;
   padding: 0.2rem 0.5rem;
   background: rgba(255, 255, 255, 0.04);
