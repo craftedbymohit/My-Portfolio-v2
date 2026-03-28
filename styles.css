@@ -9,7 +9,7 @@
 }
 
 :root {
-  --bg: #080810;
+  --bg: #3b3b88;
   --bg2: #0d0d1a;
   --bg3: #111124;
   --accent: #00f5c8;
@@ -47,21 +47,6 @@ body {
   z-index: 9000;
   width: 0%;
   transition: width 0.1s linear;
-}
-
-::-webkit-scrollbar {
-  /* changes the width of the scrollbar */
-  width: 4px;
-}
-
-::-webkit-scrollbar-track {
-  /* changes the color of the track */
-  background: var(--bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--blue);
-  border-radius: 2px;
 }
 
 /* ── NOISE OVERLAY ── */
