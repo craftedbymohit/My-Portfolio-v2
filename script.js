@@ -89,3 +89,30 @@ function createParticle() {
 
 setInterval(createParticle, 600);
 for (let i = 0; i < 8; i++) createParticle();
+
+// ── 3D Tilt Effect on Timeline Cards ───────────────────────────────
+const timelineCards = document.querySelectorAll('.timeline-card');
+
+timelineCards.forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left; // x position within the element
+    const y = e.clientY - rect.top;  // y position within the element
+    
+    // Calculate rotation (-10 to 10 degrees)
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    // Y-axis rotation depends on X-coordinate, X-axis rotation depends on Y-coordinate
+    const rotateX = ((y - centerY) / centerY) * -10;
+    const rotateY = ((x - centerX) / centerX) * 10;
+    
+    card.style.transition = 'transform 0.1s ease';
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    card.style.transition = 'transform 0.5s ease-out';
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+  });
+});
