@@ -156,14 +156,15 @@ nav.scrolled {
 }
 
 .nav-cta {
+  display: inline-block;
   background: transparent;
-  border-radius: 10PX;
-  border: 2px solid var(--accent);
-  color: var(--accent) !important;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  color: var(--white) !important;
   padding: 0.45rem 1.2rem;
   position: relative;
   overflow: hidden;
-  transition: color 0.4s linear !important;
+  transition: border-color 0.3s, color 0.4s linear, transform 0.2s !important;
   z-index: 1;
 }
 
@@ -182,8 +183,9 @@ nav.scrolled {
 }
 
 .nav-cta:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent) !important;
   color: var(--bg) !important;
-
 }
 
 .nav-cta:hover::before {
