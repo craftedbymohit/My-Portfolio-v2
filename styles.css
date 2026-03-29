@@ -183,7 +183,7 @@ nav.scrolled {
 
 .nav-cta:hover {
   color: var(--bg) !important;
-  
+
 }
 
 .nav-cta:hover::before {
@@ -1128,19 +1128,40 @@ section {
   font-size: 0.9rem;
   font-weight: 700;
   padding: 0.9rem 2rem;
-  background: var(--accent);
-  color: var(--bg);
-  border: none;
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--border);
   border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, color 0.4s linear, transform 0.2s;
+  z-index: 1;
   align-self: flex-start;
 }
 
+.form-submit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s linear;
+  z-index: -1;
+}
+
 .form-submit:hover {
-  background: #00d4ae;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 245, 200, 0.3);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.form-submit:hover::before {
+  transform: scaleX(1);
 }
 
 .form-submit svg {
