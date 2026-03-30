@@ -662,7 +662,7 @@ section {
   border-radius: 2px;
   background: linear-gradient(90deg, var(--accent), var(--accent2));
   width: 0%;
-  transition: width 1.4s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: width 2s cubic-bezier(0.215, 0.610, 0.355, 1);
 }
 
 /* Tech Stack Tags */

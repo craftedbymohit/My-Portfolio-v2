@@ -41,20 +41,57 @@ const revealObs = new IntersectionObserver((entries) => {
 
 reveals.forEach(r => revealObs.observe(r));
 
-// ── Animated Skill Bars ────────────────────────────────────────────
-const skillObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      document.querySelectorAll('.skill-fill').forEach(bar => {
-        bar.style.width = bar.dataset.width + '%';
-      });
-      skillObs.disconnect();
-    }
-  });
-}, { threshold: 0.3 });
+// ── Animated Skill Bars (Intersection Reveal) ──────────────────────
+const skillsGrid = document.querySelector('.skills-grid');
+const skillItems = document.querySelectorAll('.skill-item');
 
-const skillSection = document.querySelector('#about');
-if (skillSection) skillObs.observe(skillSection);
+if (skillsGrid) {
+  const skillObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        skillItems.forEach(item => {
+          const fill = item.querySelector('.skill-fill');
+          const pctText = item.querySelector('.skill-pct');
+          const targetWidth = parseFloat(fill.dataset.width) || 0;
+          
+          // Animate the bar width
+          fill.style.width = targetWidth + '%';
+          
+          // Animate the percentage number slowly over 2 seconds
+          let startTimestamp = null;
+          const duration = 2000; // 2 seconds
+          
+          const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            
+            // ease-out cubic to match CSS transition
+            const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+            const currentVal = Math.floor(easeOutProgress * targetWidth);
+            
+            if (pctText) {
+              pctText.textContent = currentVal + '%';
+            }
+            
+            if (progress < 1) {
+              window.requestAnimationFrame(step);
+            } else {
+              if (pctText) {
+                pctText.textContent = targetWidth + '%';
+              }
+            }
+          };
+          
+          window.requestAnimationFrame(step);
+        });
+        
+        skillObs.unobserve(skillsGrid);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  skillObs.observe(skillsGrid);
+}
 
 // ── Contact Form Submit ────────────────────────────────────────────
 const form = document.getElementById('contactForm');
