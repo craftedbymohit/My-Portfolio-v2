@@ -97,14 +97,55 @@ if (skillsGrid) {
 const form = document.getElementById('contactForm');
 const successMsg = document.getElementById('formSuccess');
 
-form.addEventListener('submit', e => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  form.style.opacity = '0.5';
-  form.style.pointerEvents = 'none';
-  setTimeout(() => {
-    form.style.display = 'none';
-    successMsg.classList.add('show');
-  }, 800);
+  
+  // Get form data
+  const formData = new FormData(form);
+  const data = {
+    name: formData.get('userName'),
+    email: formData.get('userEmail'),
+    subject: formData.get('subject') || 'No Subject',
+    message: formData.get('message')
+  };
+
+  // Provide visual feedback
+  const submitBtn = form.querySelector('.form-submit');
+  const originalBtnText = submitBtn.innerHTML;
+  
+  try {
+    submitBtn.innerHTML = 'Sending...';
+    submitBtn.disabled = true;
+    form.style.opacity = '0.5';
+    form.style.pointerEvents = 'none';
+
+    const response = await fetch('http://localhost:5000/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+        form.style.display = 'none';
+        successMsg.innerText = result.message || 'Message sent! I\'ll get back to you soon.';
+        successMsg.classList.add('show');
+    } else {
+        throw new Error(result.error || 'Failed to send message');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Error: ' + err.message);
+    
+    // Reset form state on error
+    form.style.opacity = '1';
+    form.style.pointerEvents = 'auto';
+    submitBtn.innerHTML = originalBtnText;
+    submitBtn.disabled = false;
+  }
 });
 
 // ── Floating Particles ─────────────────────────────────────────────
