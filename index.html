@@ -413,26 +413,26 @@
             <div class="form-row">
               <div class="form-group">
                 <label>Your Name</label>
-                <input type="text" placeholder="Your Name" required />
+                <input type="text" name="userName" placeholder="Your Name" required />
               </div>
               <div class="form-group">
                 <label>Email Address</label>
-                <input type="email" placeholder="your@example.com" required />
+                <input type="email" name="userEmail" placeholder="your@example.com" required />
               </div>
             </div>
             <div class="form-group">
               <label>Subject</label>
-              <select>
+              <select name="subject">
                 <option value="">I want to....</option>
-                <option>Hire for a project</option>
-                <option>Collaborate on something</option>
-                <option>Just say hello</option>
-                <option>Ask a question</option>
+                <option value="Hire">Hire for a project</option>
+                <option value="Collaborate">Collaborate on something</option>
+                <option value="Hello">Just say hello</option>
+                <option value="Question">Ask a question</option>
               </select>
             </div>
             <div class="form-group">
               <label>Message</label>
-              <textarea placeholder="Tell me about your project, idea, or just drop a hello..."></textarea>
+              <textarea name="message" placeholder="Tell me about your project, idea, or just drop a hello..."></textarea>
             </div>
             <button type="submit" class="form-submit">
               Send Message
